@@ -11,12 +11,12 @@ const workoutSchema = new Schema({
     type: Number,
     required: true,
     max: 300,
-    min:1
+    min: 1
   },
   load: {
     type: Number,
     required: true,
-    min:0,
+    min: 0,
     max: 1000
   },
   user_id: {

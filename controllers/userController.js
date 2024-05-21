@@ -36,7 +36,7 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ error: "Email doesn't exist" })
     }
   } catch (error) {
-      res.status(400).json({ error: error.message })
+    res.status(400).json({ error: error.message })
   }
 }
 
@@ -55,9 +55,9 @@ const signupUser = async (req, res) => {
       throw Error('Email already in use')
     }
 
-    if (!validator.isStrongPassword(password, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1 })) {
-        throw new Error('Password is not strong enough.');
-      }
+    if (!validator.isStrongPassword(password, { minLength: 8, minLowercase: 1, minNumbers: 1, minUppercase: 0,  minSymbols: 0 })) {
+      throw new Error('Password is not strong enough. It should be at least 8 characters long and contain at least one lowercase letter, and one number.');
+    }
 
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password, salt)
